@@ -19,7 +19,7 @@ import requests
 from io import BytesIO
 
 # URL of the files in the private repository (use GitHub token)
-file_url_2021_2023 = 'https://raw.githubusercontent.com/Nicole0410/private-data/blob/8ed0ccf763ea1cfeeef74babe9d3de2cc22167f1/product_sales_2021-2023.xlsx'
+file_url_2021_2023 = 'https://raw.githubusercontent.com/Nicole0410/private-data/main/product_sales_2021-2023.xlsx'
 
 def fetch_data(file_url, token):
     headers = {'Authorization': f'token {token}'}
