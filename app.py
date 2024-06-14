@@ -10,8 +10,14 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import streamlit as st
 
-df1 = pd.read_excel('C:/Users/nicole.chuang/Desktop/Item_performance/Jan-June/product_sales_2021-2023.xlsx')
+file_url = 'https://github.com/Nicole0410/historical-sales/raw/c6d7b1cecabaf6e5efd73af671f1fcaa2772bac8/product_sales_2021-2023.xlsx'
 
+def fetch_data(file_url):
+    response = requests.get(file_url)
+    if response.status_code == 200:
+        return pd.read_excel(BytesIO(response.content))
+    else:
+        raise ValueError(f"Failed to retrieve data from {file_url}")
 # Function to plot time series
 def plot_time_series(df, item_num):
     # Select data for the specified item number
@@ -30,15 +36,23 @@ def plot_time_series(df, item_num):
     plt.tight_layout()
     st.pyplot(plt)  # Display plot in Streamlit
 
-df = pd.read_excel('C:/Users/nicole.chuang/Desktop/Item_performance/Jan-June/product_sales_1-5_2024.xlsx')
-df1 = pd.read_excel('C:/Users/nicole.chuang/Desktop/Item_performance/Jan-June/product_sales_2021-2023.xlsx')
-
 # Main Streamlit app
-st.title('Time Series Plot')
+def main():
+    st.title('Time Series Plot')
 
-# Dropdown to select item number
-item_num = st.selectbox('Select Item Number:', df['Item_num'].unique())
+    try:
+        # Fetch data from GitHub
+        df = fetch_data(file_url)
 
-# Check if an item number is selected
-if item_num:
-    plot_time_series(df, item_num)
+        # Dropdown to select item number
+        item_num = st.selectbox('Select Item Number:', df['Item_num'].unique())
+
+        # Check if an item number is selected
+        if item_num:
+            plot_time_series(df, item_num)
+
+    except Exception as e:
+        st.error(f"Error: {str(e)}")
+
+if __name__ == '__main__':
+    main()
