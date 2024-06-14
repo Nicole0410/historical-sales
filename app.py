@@ -17,6 +17,10 @@ import seaborn as sns
 import streamlit as st
 import requests
 from io import BytesIO
+import streamlit as st
+
+# Accessing the secret
+secret_value = st.secrets["MY_SECRET"]
 
 # URL of the files in the private repository (use GitHub token)
 file_url_2021_2023 = 'https://raw.githubusercontent.com/Nicole0410/private-data/main/product_sales_2021-2023.xlsx'
