@@ -10,8 +10,6 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import streamlit as st
 
-
-df = pd.read_excel('C:/Users/nicole.chuang/Desktop/Item_performance/Jan-June/product_sales_1-5_2024.xlsx')
 df1 = pd.read_excel('C:/Users/nicole.chuang/Desktop/Item_performance/Jan-June/product_sales_2021-2023.xlsx')
 
 # Function to plot time series
