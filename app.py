@@ -17,7 +17,6 @@ import seaborn as sns
 import streamlit as st
 import requests
 from io import BytesIO
-import streamlit as st
 
 secret_value = st.secrets["MY_SECRET"]
 st.write("Secret Value:", secret_value)
