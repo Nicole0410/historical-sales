@@ -18,8 +18,7 @@ import streamlit as st
 import requests
 from io import BytesIO
 
-secret_value = st.secrets["MY_SECRET"]
-st.write("Secret Value:", secret_value)
+github_token = st.secrets['MY_SECRET']
 
 # URL of the files in the private repository (use GitHub token)
 file_url_2021_2023 = 'https://raw.githubusercontent.com/Nicole0410/private-data/main/product_sales_2021-2023.xlsx'
@@ -33,9 +32,6 @@ def fetch_data(file_url, token):
         st.error(f"Failed to retrieve data from {file_url}. Status code: {response.status_code}")
 # Main Streamlit app
 st.title('Time Series Plot')
-
-# Get GitHub PAT from GitHub Secrets
-github_token = st.secrets['MY_SECRET']
 
 # Fetch data from private repository
 df = fetch_data(file_url_2021_2023, github_token)
