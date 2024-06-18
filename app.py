@@ -30,9 +30,7 @@ def fetch_data(file_url, token):
         return pd.read_excel(BytesIO(response.content))
     else:
         st.error(f"Failed to retrieve data from {file_url}. Status code: {response.status_code}")
-# Main Streamlit app
-st.title('Time Series Plot')
-
+        return None
 # Fetch data from private repository
 df = fetch_data(file_url_2021_2023, github_token)
 
